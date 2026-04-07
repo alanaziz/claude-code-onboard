@@ -1,0 +1,26 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "claude-code-onboard",
+  "metadata": {
+    "description": "10-minute guided onboarding for Claude Code. One command builds your entire AI workspace."
+  },
+  "owner": {
+    "name": "AI with Remy",
+    "email": "remy@aiwithremy.com"
+  },
+  "plugins": [
+    {
+      "name": "claude-code-onboard",
+      "description": "Guided onboarding that connects your tools, interviews you about your business, migrates your existing projects, and builds a personalized AI workspace with context files and a self-correcting rules engine.",
+      "version": "1.0.0",
+      "author": {
+        "name": "AI with Remy",
+        "email": "remy@aiwithremy.com"
+      },
+      "source": "./",
+      "category": "productivity",
+      "homepage": "https://aiwithremy.com",
+      "tags": ["onboarding", "setup", "workspace", "context", "claude-code", "productivity"]
+    }
+  ]
+}
