@@ -300,60 +300,12 @@ Show real examples from the discovery scan, then present the spectrum:
 
 ---
 
-## Section D: Project Migration → workspace structure
-
-### Q14: Existing Projects
-**Ask**: "Do you have any existing project folders on your computer that you'd like to bring into your new workspace?"
-**Format**: Free text, iterative
-
-**Rich examples**:
-> "Think about folders you already use for work. For example:"
-> - "'I have a folder at ~/Projects/website/ — that's my company website'"
-> - "'~/marketing/ has all my content and social media stuff'"
-> - "'I do freelance work — ~/clients/acme/ and ~/clients/bigcorp/'"
-> - "'I have a ~/courses/ folder where I keep all my online course materials'"
-> - "'~/notion-exports/ has a bunch of docs I exported'"
-> - "'I've got a website project in ~/code/my-site/ and a side project in ~/code/saas-app/'"
-> - "'I don't have any folders yet — I'm starting fresh'"
-
-**Follow-up for each folder**: "What is [folder]? Give me a one-liner so I can organise it properly."
-> For example: "It's my Next.js website" or "Client deliverables for Acme Corp" or "Marketing content and templates"
-
-**After collecting all folders, propose a structure**:
-> "Based on what you've told me, here's how I'd organise your OS:
->
-> ```
-> ~/Desktop/OS/
-> ├── CLAUDE.md
-> ├── context/
-> ├── active/
-> ├── [project-a]/     ← [description]
-> ├── [project-b]/     ← [description]
-> └── clients/
->     ├── [client-a]/  ← [description]
->     └── [client-b]/  ← [description]
-> ```
->
-> Does this structure make sense? Want to change anything?"
-
-**Grouping rules**:
-- If they have multiple client folders → group under `clients/`
-- If they have a mix of business and personal → suggest separate top-level folders
-- If they mention a folder that's a code project (website, app) → keep it as a top-level project folder
-- Keep folder names lowercase with hyphens (e.g., `my-website/` not `My Website/`)
-- If they're starting fresh with no folders → skip this step entirely
-
-**Maps to**: Phase 4 Step 5 (project migration) + CLAUDE.md workspace structure map
-
----
-
 ## Post-Interview Notes
 
-After all 14 questions, the skill should have enough to generate:
+After all questions, the skill should have enough to generate:
 1. `context/about-me.md` — from Q1-Q4
 2. `context/voice-dna.md` — from Q5-Q8 + discovery scan writing samples
 3. `context/working-style.md` — from Q9-Q13
-4. CLAUDE.md — from Q10 + Q14 + all context files + connected tools + self-correcting rules engine
-5. Project migration plan — from Q14
+4. CLAUDE.md — from Q10 + all context files + connected tools + self-correcting rules engine
 
 Before writing any files, show the user a preview of each context file and get their approval.

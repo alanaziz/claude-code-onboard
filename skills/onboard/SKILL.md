@@ -43,7 +43,7 @@ Check if the workspace already has onboarding files:
 
 ### Welcome Message
 
-> "Hey! I'm going to walk you through setting up your AI workspace. This takes about 10 minutes, and by the end you'll have an AI assistant that genuinely knows your business, writes in your voice, and organises all your projects in one place.
+> "Hey! I'm going to walk you through setting up your AI workspace. This takes about 10 minutes, and by the end you'll have an AI assistant that genuinely knows your business and writes in your voice.
 >
 > I'll explain everything as we go, so you'll actually understand what we're building and why — not just click through a setup wizard.
 >
@@ -190,7 +190,7 @@ Keep everything — writing samples, patterns, documents — in context. These f
 
 ### Teach: What We're Building
 
-> "**Now for the interview.** I'm going to ask you about 14 questions — who you are, how you want me to sound, how you work, what tools you use, and where your existing projects live. Don't worry about getting everything perfect — you can update any of this later with `/update-context`.
+> "**Now for the interview.** I'm going to ask you a series of questions — who you are, how you want me to sound, how you work, and what tools you use. Don't worry about getting everything perfect — you can update any of this later with `/update-context`.
 >
 > **What these answers become:** I'll turn your answers into three files that live in your workspace:
 > 1. **About Me** — so I always know your role, business, and expertise
@@ -243,17 +243,6 @@ Ask Q9 through Q13 from `interview-questions.md`, one at a time.
 
 Load the full examples from the question bank.
 
-#### Section D: Project Migration (Q14)
-
-Transition — teach what we're doing:
-> "**Last thing — let's round up your existing projects.**
->
-> Right now you probably have project folders scattered across your computer — a website folder here, a marketing folder there, maybe some client work somewhere else. We're going to bring them all into your new workspace so everything is in one place.
->
-> Think of it like moving into a new office. Instead of having files in three different rooms, we're putting everything in one organised space."
-
-Ask Q14 from `interview-questions.md`. This covers identifying existing project folders and planning where they should live in the OS.
-
 ### After the Interview
 
 > "That's all the questions! Now I'm going to turn everything you told me into your workspace files. I'll show you each one before I save it."
@@ -272,7 +261,6 @@ Ask Q14 from `interview-questions.md`. This covers identifying existing project 
 > - **CLAUDE.md** — the master instructions file I read first every session
 > - **context/** — your knowledge base (who you are, how you write, how you work)
 > - **active/** — where all generated output goes (research, drafts, exports, anything I create)
-> - **Your existing projects** — moved in and organised
 >
 > The **context** folder is your second brain — it's the source of truth about you and your business. Before I do anything, I check there first. The **active** folder keeps your workspace clean — instead of files piling up everywhere, everything I generate goes into organised subfolders inside active/.
 >
@@ -415,26 +403,6 @@ After all three are approved, write them to `~/Desktop/OS/context/`:
 - `~/Desktop/OS/context/voice-dna.md`
 - `~/Desktop/OS/context/working-style.md`
 
-### Step 5: Migrate Projects
-
-If the user identified existing project folders in Q14:
-
-1. Show the full migration plan:
-> "Here's the migration plan. I'm going to move these folders into your OS:
->
-> | Current Location | New Location |
-> |-----------------|-------------|
-> | `[old path]` | `~/Desktop/OS/[new location]` |
-> | `[old path]` | `~/Desktop/OS/[new location]` |
->
-> This will physically move the folders — they won't be at their old location anymore. Want to proceed?"
-
-2. Wait for confirmation before moving ANYTHING
-3. Move each folder using `mv`
-4. Confirm each move succeeded
-
-If no projects were identified in Q14, skip this step.
-
 ### Teach: What CLAUDE.md Is
 
 > "**Now for the most important file in your workspace — CLAUDE.md.**
@@ -449,9 +417,9 @@ If no projects were identified in Q14, skip this step.
 >
 > 2. **Self-correcting rules engine** — every time you correct me, I write it down as a permanent rule. So if you say 'don't do that', it never happens again. Over time, this workspace gets smarter the more you use it."
 
-### Step 6: Generate and Write CLAUDE.md
+### Step 5: Generate and Write CLAUDE.md
 
-Create the master instruction file. The workspace structure map should dynamically reflect whatever projects were migrated.
+Create the master instruction file.
 
 ```markdown
 # [Name]'s AI Workspace
@@ -473,7 +441,6 @@ OS/
 ├── CLAUDE.md          ← this file (master instructions)
 ├── context/           ← second brain (about-me, voice-dna, working-style)
 ├── active/            ← all generated output (research, drafts, exports)
-[dynamically add lines for each migrated project folder with a description]
 ```
 
 [Update this map as the workspace grows — add new folders and descriptions so future sessions can navigate without exploring.]
@@ -533,7 +500,6 @@ Show preview and get confirmation. Write CLAUDE.md to `~/Desktop/OS/CLAUDE.md`.
 > - `CLAUDE.md` — master instructions, the first thing I read every session
 > - `context/` — your second brain (who you are, how you write, how you work)
 > - `active/` — where all generated output goes (keeps your workspace clean)
-> [if projects migrated: list them with brief descriptions]
 >
 > **Built-in behaviours:**
 > - **Context-first** — I always check your context files and tools before asking you anything
@@ -573,5 +539,4 @@ Throughout the entire onboarding:
 - **User wants to skip a question**: Skip it. Use reasonable defaults or leave the section minimal.
 - **User wants to stop mid-flow**: Save progress so far. Tell them they can resume with `/onboard` or refine with `/update-context`.
 - **~/Desktop/OS/ already exists**: Warn and ask how to proceed. Never overwrite without permission.
-- **Project migration path doesn't exist**: Tell the user, skip that folder, continue with the rest.
 - **User seems confused**: Pause and re-explain the current concept. Ask "Does that make sense?" before continuing.

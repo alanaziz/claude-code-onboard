@@ -1,14 +1,13 @@
 # Claude Code Onboard
 
-10-minute guided onboarding for Claude Code. One command builds your entire AI workspace.
+Guided onboarding for Claude Code. One command builds a personalized AI workspace that knows your business and writes in your voice.
 
 ## What It Does
 
-Run `/onboard` and in 10 minutes you'll have:
+Run `/onboard` and you'll have:
 
 - **Voice DNA** — Claude learns how you actually write by scanning your emails and messages, then builds a detailed voice profile with real writing samples
 - **Context files** — who you are, how you work, your full tool stack and preferences
-- **Project consolidation** — existing project folders from across your computer, moved into one organised workspace
 - **Self-correcting rules engine** — your workspace gets smarter every time Claude makes a mistake
 - **Context-first AI** — Claude checks your files and tools before asking you questions
 
@@ -16,14 +15,13 @@ Run `/onboard` and in 10 minutes you'll have:
 
 1. **Connect your tools** — step-by-step guidance to link Gmail, Google Drive, Calendar, Notion, and Slack via the Claude Desktop app
 2. **Deep discovery scan** — digs through your sent emails, messages, and docs to learn your writing style and find existing business context
-3. **Guided interview** — 14 focused questions about you, your voice, your workflow, your tools, and your existing projects. Every question comes with rich examples so you're never staring at a blank prompt
-4. **Project migration** — finds your scattered project folders and organises them into one workspace
-5. **Workspace setup** — generates CLAUDE.md with context-first philosophy and self-correcting rules engine
+3. **Guided interview** — a focused set of questions about you, your voice, and your workflow. Every question comes with rich examples so you're never staring at a blank prompt
+4. **Workspace setup** — generates CLAUDE.md with context-first philosophy and self-correcting rules engine
 
 ## Installation
 
 ```
-/plugin marketplace add aiwithremy/claude-code-onboard
+/plugin marketplace add alanaziz/claude-code-onboard
 ```
 
 ## Usage
@@ -55,8 +53,7 @@ This lets you refresh individual sections (about me, voice DNA, working style) w
 │   ├── about-me.md                    # Identity, role, business, expertise
 │   ├── voice-dna.md                   # Writing style, tone, samples, anti-patterns
 │   └── working-style.md              # Output prefs, rules, tasks, full tool stack
-├── active/                            # All generated output goes here
-└── [your projects]                    # Existing folders migrated in
+└── active/                            # All generated output goes here
 ```
 
 ## Requirements
@@ -66,7 +63,9 @@ This lets you refresh individual sections (about me, voice DNA, working style) w
 
 ## Author
 
-AI with Remy — [aiwithremy.com](https://aiwithremy.com)
+Alan Aziz — [alanaziz.com](https://alanaziz.com)
+
+Forked from [aiwithremy/claude-code-onboard](https://github.com/aiwithremy/claude-code-onboard) under the MIT license.
 
 ## License
 
