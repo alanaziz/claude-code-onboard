@@ -11,7 +11,7 @@
   "plugins": [
     {
       "name": "claude-code-onboard",
-      "description": "Guided onboarding that connects your tools, interviews you about your business, and builds a personalized AI workspace with context files, a Voice DNA writing profile, and a self-correcting rules engine.",
+      "description": "Guided onboarding that connects your tools, interviews you about your business, and builds a personalized AI workspace (OS-[Name]) with context files and a Voice DNA writing profile — one workspace per brand.",
       "version": "1.0.0",
       "author": {
         "name": "Alan Aziz",

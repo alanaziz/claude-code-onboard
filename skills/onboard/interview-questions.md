@@ -306,6 +306,6 @@ After all questions, the skill should have enough to generate:
 1. `context/about-me.md` — from Q1-Q4
 2. `context/voice-dna.md` — from Q5-Q8 + discovery scan writing samples
 3. `context/working-style.md` — from Q9-Q13
-4. CLAUDE.md — from Q10 + all context files + connected tools + self-correcting rules engine
+4. CLAUDE.md — from Q10 + all context files + connected tools (kept short — a pointer to `context/`, plus the one rule that matters most)
 
 Before writing any files, show the user a preview of each context file and get their approval.

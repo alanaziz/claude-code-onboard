@@ -4,7 +4,7 @@ description: Use when setting up a new AI workspace, running guided onboarding, 
 user-invocable: true
 ---
 
-# Claude Code Onboard
+# Onboard — AI Workspace Setup
 
 Guided onboarding that builds a personalized AI workspace. This is both a setup tool AND an educational walkthrough. The user should finish understanding what they built and why each piece matters.
 
@@ -31,11 +31,20 @@ All reference files are in the same directory as this skill file (`skills/onboar
 
 When this skill says "load [filename]", read it from the same directory as this SKILL.md.
 
+## Workspace Naming Convention
+
+Each workspace lives in its own folder on the Desktop, named `OS-[Name]` — one per brand, venture, or persona (e.g. `OS-Alanaziz` for a personal content brand, `OS-RuangKotak` for a marketing agency). Someone with more than one brand or business gets more than one `OS-` folder, each fully self-contained (own `CLAUDE.md`, `context/`, `active/`).
+
+Early in Phase 1, ask what this workspace is for: "What's this workspace for — your name, a business, or a specific brand? (e.g. 'Alan' for a personal brand, 'RuangKotak' for an agency)." Turn the answer into `[Name]` in PascalCase (spaces removed, each word capitalized) to build the folder name `OS-[Name]`. Confirm it with the user before proceeding: "Got it — I'll set this up as `~/Desktop/OS-[Name]/`. Sound right?"
+
+Use `OS-[Name]` everywhere below in place of a literal path.
+
 ## Before You Start
 
-Check if the workspace already has onboarding files:
-- If `~/Desktop/OS/CLAUDE.md` exists AND `~/Desktop/OS/context/` folder exists → warn the user: "It looks like you already have a workspace set up at ~/Desktop/OS/. Running onboarding will overwrite your context files. Want to continue, or would `/update-context` be better for updating specific sections?"
-- If no existing files → proceed directly
+Check `~/Desktop/` for existing `OS-*` folders:
+- If any exist, list them: "I found existing workspace(s): OS-Alanaziz, OS-RuangKotak. Is this a new workspace, or do you want to update one of these? (Updating an existing one is usually better done with `/update-context`.)"
+- If the chosen `OS-[Name]` folder already has `CLAUDE.md` AND `context/` → warn the user: "It looks like you already have a workspace set up at ~/Desktop/OS-[Name]/. Running onboarding will overwrite your context files. Want to continue, or would `/update-context` be better for updating specific sections?"
+- If no existing files for that name → proceed directly
 
 ---
 
@@ -43,11 +52,11 @@ Check if the workspace already has onboarding files:
 
 ### Welcome Message
 
-> "Hey! I'm going to walk you through setting up your AI workspace. This takes about 10 minutes, and by the end you'll have an AI assistant that genuinely knows your business and writes in your voice.
+> "Hey! I'm going to walk you through setting up your AI workspace. This takes about 10 minutes, and by the end you'll have an AI assistant that genuinely knows your business, writes in your voice, and organises all your projects in one place.
 >
 > I'll explain everything as we go, so you'll actually understand what we're building and why — not just click through a setup wizard.
 >
-> We're going to build something called your OS — a single folder on your Desktop that becomes your command centre. Everything goes through here from now on."
+> We're going to build you an AI workspace — a single folder on your Desktop that becomes your command centre for this brand or business. Everything goes through here from now on."
 
 ### Teach: Why Tools Come First
 
@@ -253,25 +262,26 @@ Load the full examples from the question bank.
 
 ### Teach: What We're Creating
 
-> "**Now I'm going to build your workspace — a folder called OS (your operating system) on your Desktop.**
+> "**Now I'm going to build your workspace — a folder called OS-[Name] on your Desktop.**
 >
 > This is the folder you'll open in Claude Code from now on. Every time you open it, I automatically read your context files before we even start talking. It's like leaving yourself a set of notes that your AI reads before every conversation.
 >
-> Inside OS, you'll have:
+> Inside it, you’ll have:
 > - **CLAUDE.md** — the master instructions file I read first every session
 > - **context/** — your knowledge base (who you are, how you write, how you work)
 > - **active/** — where all generated output goes (research, drafts, exports, anything I create)
+> - **Your existing projects** — moved in and organised
 >
 > The **context** folder is your second brain — it's the source of truth about you and your business. Before I do anything, I check there first. The **active** folder keeps your workspace clean — instead of files piling up everywhere, everything I generate goes into organised subfolders inside active/.
 >
 > You can open and edit any of these files anytime. They're yours."
 
-### Step 1: Create the OS Folder
+### Step 1: Create the Workspace Folder
 
-Create `~/Desktop/OS/` with `context/` and `active/` subfolders:
+Create `~/Desktop/OS-[Name]/` with `context/` and `active/` subfolders:
 
 ```
-~/Desktop/OS/
+~/Desktop/OS-[Name]/
   CLAUDE.md
   context/
     about-me.md
@@ -280,7 +290,7 @@ Create `~/Desktop/OS/` with `context/` and `active/` subfolders:
   active/
 ```
 
-If `~/Desktop/OS/` already exists, warn the user and ask how to proceed before overwriting anything.
+If `~/Desktop/OS-[Name]/` already exists, warn the user and ask how to proceed before overwriting anything.
 
 ### Step 2: Generate Context Files
 
@@ -398,95 +408,42 @@ Wait for confirmation before moving to the next. If they want changes, make them
 
 ### Step 4: Write Context Files
 
-After all three are approved, write them to `~/Desktop/OS/context/`:
-- `~/Desktop/OS/context/about-me.md`
-- `~/Desktop/OS/context/voice-dna.md`
-- `~/Desktop/OS/context/working-style.md`
+After all three are approved, write them to `~/Desktop/OS-[Name]/context/`:
+- `~/Desktop/OS-[Name]/context/about-me.md`
+- `~/Desktop/OS-[Name]/context/voice-dna.md`
+- `~/Desktop/OS-[Name]/context/working-style.md`
 
 ### Teach: What CLAUDE.md Is
 
 > "**Now for the most important file in your workspace — CLAUDE.md.**
 >
-> This is your master instructions file. It's the very first thing I read every time you start a new conversation. It imports your context files and contains your rules.
+> This is your master instructions file. It's the very first thing I read every time you start a new conversation.
 >
-> Think of it like a briefing document. Before we talk about anything, I've already read: who you are, how you write, how you work, what tools you use, and what rules to follow. You never have to re-explain yourself.
+> Think of it like a briefing document. Before we talk about anything, I've already read: who you are, what this brand/business is, and where to find the details on how you write and work. You never have to re-explain yourself.
 >
-> It also has two important built-in behaviours:
->
-> 1. **Context-first philosophy** — before I do anything, I check your context files and connected tools for answers. I only ask you a question as a last resort, once I've exhausted everything I can look up myself. No lazy questions.
->
-> 2. **Self-correcting rules engine** — every time you correct me, I write it down as a permanent rule. So if you say 'don't do that', it never happens again. Over time, this workspace gets smarter the more you use it."
+> It's deliberately short — it points at your `context/` files rather than repeating them, and it puts the one rule you most need me to never break front and centre so it can't get missed."
 
 ### Step 5: Generate and Write CLAUDE.md
 
-Create the master instruction file.
+Create the master instruction file. Keep it short — a pointer to `context/`, not a restatement of it. Pull the single most important hard rule from Q10 for the closing section (if Q10 produced more than one hard rule, pick the one about external/client-facing sends — that's the rule that matters most in both existing workspaces).
 
 ```markdown
-# [Name]'s AI Workspace
+# [Brand/Business] — [Name]'s [one-line description] Workspace
 
-## Context — Second Brain
+This is [Name]'s operating system for [Brand/Business] — [what it is, one line, from Q2/Q4]. Read the files in `context/` before doing anything else.
 
-@context/
+- `context/about-me.md` — identity, [business/content focus from Q2], [daily focus/key stats from Q3]
+- `context/voice-dna.md` — how to write as [Name] [for X] (tone, language, anti-voice)
+- `context/working-style.md` — output preferences, hard rules, tools, tasks
 
-The context folder is the source of truth for who [Name] is, how they write, how they work, and what tools they use. It is loaded automatically above.
+All generated output ([output types from Q9/discovery, e.g. "scripts, drafts, research"]) goes into organized subfolders inside `active/` — keep this root folder clean.
 
-**Before any task or question, check context first.** Don't work from assumptions — find the answer. If context/ doesn't have it, check connected tools (Gmail, Notion, Slack, calendar) before asking [Name]. Only come to [Name] with a question once you've exhausted all available sources.
+## The one rule that matters most
 
-**Assumptions are the enemy.** Every decision and answer must be rooted in fact — from context files, from connected tools, or from the workspace itself. If you're unsure, look it up. If you can't find it anywhere, then ask.
-
-## Workspace Structure
-
-```
-OS/
-├── CLAUDE.md          ← this file (master instructions)
-├── context/           ← second brain (about-me, voice-dna, working-style)
-├── active/            ← all generated output (research, drafts, exports)
+[The single most important hard rule from Q10, phrased as a short imperative — e.g. "Never send/post anything external — emails, scripts, DMs, client-facing anything — without [Name] reviewing it first."]
 ```
 
-[Update this map as the workspace grows — add new folders and descriptions so future sessions can navigate without exploring.]
-
-## Instructions
-
-### Communication
-- Follow the Voice DNA guidelines in all output
-- Match the output preferences in the working style guide
-- Use the writing samples as reference for tone and style
-
-### Tools
-[list each connected tool with usage from Q13, e.g.:]
-- Notion: project management — check here for project status before asking
-- Gmail: email — never send without showing draft first
-- Slack: team and client comms — primary channel for client communication
-
-### Rules
-- All generated output goes in `active/` — don't pollute root. Use structured subfolders within active/ (e.g., `active/research/`, `active/drafts/`, `active/exports/`). Create a subfolder when a new type of output emerges.
-[hard rules from Q10, formatted as clear instructions]
-
----
-
-## Self-Correcting Rules Engine
-
-This section contains a growing ruleset that improves over time. **At session start, read all learned rules before doing anything.**
-
-### How It Works
-1. When [Name] corrects you or you make a mistake, **immediately append a new rule** to the "Learned Rules" section below
-2. Rules are numbered sequentially: `N. [CATEGORY] Never/Always do X — because Y`
-3. Categories: `[STYLE]` `[TONE]` `[TOOL]` `[PREFERENCE]` `[PROCESS]` `[FORMAT]` `[COMMS]`
-4. Before starting any task, scan all rules for relevant constraints
-5. If two rules conflict, the higher-numbered (newer) rule wins
-6. Keep rules current — update in place rather than appending duplicates
-
-### When to Add a Rule
-- [Name] explicitly corrects your output ("no, do it this way")
-- [Name] rejects a file, approach, or pattern
-- [Name] states a preference ("always use X", "never do Y")
-- You discover something doesn't work as expected with tools or workflows
-
-### Learned Rules
-[Rules will be added here as [Name] works with the workspace]
-```
-
-Show preview and get confirmation. Write CLAUDE.md to `~/Desktop/OS/CLAUDE.md`.
+Show preview and get confirmation. Write CLAUDE.md to `~/Desktop/OS-[Name]/CLAUDE.md`.
 
 ---
 
@@ -496,24 +453,23 @@ Show preview and get confirmation. Write CLAUDE.md to `~/Desktop/OS/CLAUDE.md`.
 
 > "**Your workspace is ready! Here's what we built and why:**
 >
-> **Your OS folder** (`~/Desktop/OS/` — open this in Claude Code from now on):
+> **Your OS-[Name] folder** (`~/Desktop/OS-[Name]/` — open this in Claude Code from now on):
 > - `CLAUDE.md` — master instructions, the first thing I read every session
 > - `context/` — your second brain (who you are, how you write, how you work)
 > - `active/` — where all generated output goes (keeps your workspace clean)
 >
 > **Built-in behaviours:**
-> - **Context-first** — I always check your context files and tools before asking you anything
-> - **Self-correcting** — every correction becomes a permanent rule, so mistakes don't repeat
+> - **One rule that matters most** — CLAUDE.md puts your top non-negotiable rule (usually: never send/post anything external without you reviewing it first) right up front so it never gets missed
 > - **Clean workspace** — all output goes in `active/` with organised subfolders
 >
-> **How to use it:** Open a new terminal, navigate to `~/Desktop/OS/`, and run `claude`. That's your workspace from now on. Every new conversation will start with me already knowing who you are and how you work.
+> **How to use it:** Open a new terminal, navigate to `~/Desktop/OS-[Name]/`, and run `claude`. That's your workspace from now on. Every new conversation will start with me already knowing who you are and how you work.
 >
-> **How it gets better over time:** Every time you correct me, I add a rule to CLAUDE.md. Every time you update a preference, the context files change. This workspace learns. It's not static — it grows with you.
+> **How it gets better over time:** Whenever a context file gets out of date — your voice, your rules, your tools — run `/update-context` to refresh it. This workspace is only as good as the files in `context/`, so keep them current.
 >
 > **Useful commands to remember:**
 > - `/update-context` — update any part of your workspace context
 >
-> You're all set. Open your OS folder in Claude Code and take it for a spin!"
+> You're all set. Open your OS-[Name] folder in Claude Code and take it for a spin!"
 
 ---
 
@@ -538,5 +494,5 @@ Throughout the entire onboarding:
 - **User gives very short answers**: That's fine. Work with what you have. Don't push for more.
 - **User wants to skip a question**: Skip it. Use reasonable defaults or leave the section minimal.
 - **User wants to stop mid-flow**: Save progress so far. Tell them they can resume with `/onboard` or refine with `/update-context`.
-- **~/Desktop/OS/ already exists**: Warn and ask how to proceed. Never overwrite without permission.
+- **~/Desktop/OS-[Name]/ already exists**: Warn and ask how to proceed. Never overwrite without permission.
 - **User seems confused**: Pause and re-explain the current concept. Ask "Does that make sense?" before continuing.
